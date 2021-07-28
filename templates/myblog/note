@@ -1,0 +1,3 @@
+has to add enctype="multipart/form-data" before method="POST" to allow form to display images cause img and text are encoded differently
+
+2. Have to create MEDIA_URL and MEDIA_ROOT in settings.py

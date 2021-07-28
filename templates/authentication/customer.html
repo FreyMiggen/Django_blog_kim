@@ -1,0 +1,29 @@
+{% extends 'bases.html' %}
+
+
+
+
+{% block title %}DashBoard{% endblock %}
+{% block content %}
+<style>
+    .board{
+background-color: lightgrey;
+  width: 300px;
+  border: 10px solid rgb(98, 151, 230);
+  padding: 50px;
+  margin: 20px;
+}
+</style>
+<center>
+<ul class='board'>
+{% for cus in customer_list %}
+
+<li>
+   <strong>{{cus.name}}</strong> 
+          {{cus.email}}
+
+</li>
+{% endfor %}
+</ul>
+</center>
+{% endblock %}

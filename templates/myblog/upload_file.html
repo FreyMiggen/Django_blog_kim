@@ -1,0 +1,21 @@
+{% extends 'main.html' %}
+{% block content %}
+<div style='color:white'>
+    <h2>Upload File</h2>
+<br/>
+<hr>
+<form action='' method='POST' enctype="multipart/form-data" >{% csrf_token %}
+
+<input type='file' name='document'>
+<input class='btn btn-light' type='submit' value='Upload File'>
+</form>
+
+{% if url %}
+<h4>Uploaded File: </h4><a style='color:white' href='{{url}}'>{{url}}</a>
+<img src='{{url}}' style='width:100px;height:100%;'>
+
+{% endif %}
+
+
+</div>
+{% endblock %}

@@ -1,0 +1,57 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .white-text{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 30px;
+                color: blanchedalmond;
+
+    }
+</style>
+
+<div style='color:whitesmoke'>
+<h1> {{ post.title }} </h1>
+<small>By {{ post.author }}</small>
+<br/>
+<hr>
+<p>
+    {{ post.content|safe }} 
+    <!-- to make content appears in the html form -->
+    <br>
+    <br>
+    <hr>
+    {% if post.header_image %}
+    {{post.header_image}}
+    <img src="{{ post.header_image.url }}" style='width: 200px;height:100%;'>
+    {% else %}
+    <p>No image uploaded</p>
+    {% endif %}
+    <br/><br/>
+    {% if liked %}
+    <form action="{% url 'post-likes' post.id %}" method='POST'>
+        {% csrf_token %}
+        <button type='submit' class="btn btn-warning btn-sm" name="post_id" value='{{post.id}}'>Unlike</button> - {{total_likes}} Likes 
+        <br/>Liked by {% for like in likes %}
+                      {% if like == user %}
+                      you|
+                      {% else %}
+                      {{like}}|
+                      {% endif %}
+                      {% endfor %}
+    </form>
+    {% else %}
+    <form action="{% url 'post-likes' post.id %}" method='POST'>
+        {% csrf_token %}
+        <button type='submit' class="btn btn-primary btn-sm" name="post_id" value='{{post.id}}'>Like</button> - {{total_likes}} Likes 
+        <br/>Liked by {% for like in likes %} 
+                      {{like}}|
+                      {% endfor %}
+    </form>
+    {% endif %}
+
+    
+
+</p>    
+
+
+</div>
+{% endblock %}

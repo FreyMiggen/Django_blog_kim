@@ -1,0 +1,23 @@
+{% extends 'main.html' %}
+{% block content %}
+<div style='color:white'>
+
+current user: {{user}}
+
+author: {{post.author}}
+{% if user == post.author or user.id == 2 %}
+    <h2>Update post {{post.title}}</h2>
+
+<form action='' method='POST' enctype="multipart/form-data" >{% csrf_token %}
+
+{{form.media}}
+    {{form.as_p}}
+<input class='btn btn-light' type='submit' value='Update'>
+</form>
+{% else %}
+
+<h1>You are not authorized to modify this post. And you know it!!!</h1>
+{% endif %}
+
+</div>
+{% endblock %}

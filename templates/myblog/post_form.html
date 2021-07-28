@@ -1,0 +1,22 @@
+{% extends 'main.html' %}
+{% block content %}
+<div style='color:white'>
+{% if submitted %}
+<h1>Your post has been sucessfully created</h1>
+{% else %}
+{{kim}}
+<form action='' method='POST' enctype="multipart/form-data" >{% csrf_token %}
+    Author: {{user}}
+
+    {{form.media}} 
+    <!-- for richtextfield to show up -->
+    {{form.as_p}}
+<input class='btn btn-light' type='submit' value='Create'>
+</form>
+
+
+{% endif %}
+
+</div>
+
+{% endblock %}

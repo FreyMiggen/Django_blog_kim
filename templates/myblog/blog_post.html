@@ -1,0 +1,44 @@
+{% extends 'main.html' %}
+{% block content %}
+<style>
+    .white-text{font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+                font-size: 30px;
+                color: blanchedalmond;
+
+    }
+</style>
+<a class='btn btn-info' href="{% url 'post-form' %}">Create New Post</a>
+<br/>
+<br/>
+<table class='table table-light'>
+    <thead class='thead thead-dark'>
+        <tr>
+            <th scope='col'>Time created</th>
+            <th scope='col'>Author</th>
+            <th scope='col'>Title</th>
+            <th scope='col'>Detail</th>
+            <th scope='col'>Update</th>
+            <th scope='col'>Delete</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for post in object_list %}
+        <tr>
+            <th scope='col'>{{post.time}}</th>
+            <th scope='col'>{{post.author}}</th>
+            <th scope='col'>{{post.title}}</th>
+            <th scope='col'><a href="{% url 'detail-post' post.id %}">Click here for detail</a></th>
+            <th scope='col'><a href="{% url 'update-post' post.id %}">Update</a></th>
+            <th scope='col'><a class='btn btn-outline-danger' href="{% url 'delete-post' post.id %}">Delete</a></th>
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+          
+
+
+</li>
+</ul>
+{% endblock %}

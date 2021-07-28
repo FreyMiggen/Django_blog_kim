@@ -1,0 +1,14 @@
+{% extends 'bases.html' %}
+{% block content %}
+{% if submitted %}
+<h1> An order has been successfully created</h1>
+{% else %}
+<form action='' method='POST'>
+    {% csrf_token %}
+    {{form.as_p}}
+
+    <input class='btn btn-secondary' type='submit' value='Submit'>
+{% endif %}
+</form>
+{% endblock %}
+
