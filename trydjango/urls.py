@@ -24,6 +24,7 @@ urlpatterns = [
     #path('members/',include('django.contrib.auth.urls')),
     path('members/',include('authentication.urls')),
     path('blog/',include('myblog.urls')),
+    path('chat/',include('public_chat.urls')),
     
 ]
 

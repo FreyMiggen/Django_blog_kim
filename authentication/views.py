@@ -24,11 +24,12 @@ def home_view(request):                                   # otherwise they will 
 @unauthenticated_user
 def UserRegisterView(request):
     form=SignUpForm()
-    if request.method=='POST':
+    if request.method=='POST' or None:
         form=SignUpForm(request.POST)                
         if form.is_valid():
                         #form.save()
             user=form.save()
+            User.add(user)
                             # to make every person register automatically enter group 'outsider'
             group=Group.objects.get(name='outsider')
             group.user_set.add(user)
@@ -43,7 +44,7 @@ def login_view(request):
         username=request.POST.get('username')
         password=request.POST.get('password')
         user=authenticate(request,username=username,password=password)
-            
+        
         if user is not None:
             login(request,user)
             return redirect('test')
